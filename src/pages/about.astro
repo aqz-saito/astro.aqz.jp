@@ -1,0 +1,479 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Trans from "@/components/Trans.astro";
+import WaveDivider from "@/components/WaveDivider.astro";
+
+const metaDescription = {
+  en: "AI-Human collaboration in modern web development - Combining 30+ years of experience with cutting-edge AI",
+  ja: "最新のWeb開発におけるAIと人間の協働 - 30年以上の経験と最先端のAIを組み合わせて",
+};
+---
+
+<Layout
+  title="About - Astro Components"
+  description={`${metaDescription.en} / ${metaDescription.ja}`}
+>
+  <!-- Hero Section -->
+  <div class="relative min-h-[400px] flex items-center">
+    <div class="absolute inset-0 z-0">
+      <img
+        src="src/assets/images/aqz-astro-about-hero.webp"
+        alt="About hero background"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 to-blue-800/90"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 py-12">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm mb-6"
+      >
+        <span class="material-icons text-xs text-white">psychology</span>
+        <Trans
+          en="Experience Meets Innovation"
+          ja="経験とイノベーションの融合"
+          enClass="text-white"
+          jaClass="text-white/80 text-sm"
+        />
+      </div>
+      <h1 class="text-5xl font-bold text-white mb-4">
+        <Trans
+          en="About This Project"
+          ja="プロジェクトについて"
+          enClass="text-white"
+          jaClass="text-white/80"
+        />
+      </h1>
+      <p class="text-xl text-blue-100">
+        <Trans
+          en="Modern web development through AI-Human collaboration, backed by over three decades of diverse experience"
+          ja="30年以上の多様な経験に裏打ちされた、AIと人間の協働による最新のWeb開発"
+          enClass="text-blue-100"
+          jaClass="text-blue-200 text-lg"
+        />
+      </p>
+    </div>
+  </div>
+
+  <!-- Wave Divider -->
+  <WaveDivider height="h-16" blur="8" />
+
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <div class="prose dark:prose-invert max-w-none space-y-8">
+      <!-- Section 1: Professional Overview -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+        <h2 class="flex items-center gap-2 mt-0">
+          <span class="material-icons">psychology</span>
+          <Trans en="Professional Overview" ja="プロフェッショナル概要" />
+        </h2>
+        <Trans
+          en="With over 30 years of experience spanning software development, business management, and leadership roles, this project represents the culmination of technical expertise and practical business acumen, enhanced by modern AI capabilities."
+          ja="ソフトウェア開発、ビジネスマネジメント、リーダーシップにおける30年以上の経験を活かし、最新のAI技術で強化された技術的専門知識とビジネスの実践的知見を結集したプロジェクトです。"
+        />
+      </div>
+
+      <!-- Section 2: Core Competencies -->
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+          <h3 class="flex items-center gap-2 mt-0">
+            <span class="material-icons">engineering</span>
+            <Trans en="Technical Expertise" ja="技術的専門知識" />
+          </h3>
+          <ul class="mt-4">
+            <li>
+              <Trans
+                en="Full-stack development (C/C++, PHP, JavaScript)"
+                ja="フルスタック開発 (C/C++, PHP, JavaScript)"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Cross-platform development (Windows, Mac, Linux)"
+                ja="クロスプラットフォーム開発 (Windows, Mac, Linux)"
+              />
+            </li>
+            <li>
+              <Trans en="Mobile development (iOS, Android)" ja="モバイル開発 (iOS, Android)" />
+            </li>
+            <li>
+              <Trans en="Cloud platforms (AWS, Azure)" ja="クラウドプラットフォーム (AWS, Azure)" />
+            </li>
+            <li><Trans en="Database design and management" ja="データベース設計と管理" /></li>
+            <li><Trans en="Network architecture" ja="ネットワークアーキテクチャ" /></li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+          <h3 class="flex items-center gap-2 mt-0">
+            <span class="material-icons">business</span>
+            <Trans en="Business Leadership" ja="ビジネスリーダーシップ" />
+          </h3>
+          <ul class="mt-4">
+            <li><Trans en="Business development and strategy" ja="事業開発と戦略" /></li>
+            <li>
+              <Trans en="Real estate investment consulting" ja="不動産投資コンサルティング" />
+            </li>
+            <li><Trans en="IP strategy and management" ja="知的財産戦略と管理" /></li>
+            <li><Trans en="Financial management" ja="財務管理" /></li>
+            <li><Trans en="Corporate governance" ja="コーポレートガバナンス" /></li>
+            <li><Trans en="Grant project management" ja="助成金プロジェクト管理" /></li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+          <h3 class="flex items-center gap-2 mt-0">
+            <span class="material-icons">school</span>
+            <Trans en="Education & Recognition" ja="教育と受賞歴" />
+          </h3>
+          <ul class="mt-4">
+            <li>
+              <Trans
+                en="Monodzukuri Nippon Grand Award, 2011 (Ministry of Economy, Trade and Industry)"
+                ja="ものづくり日本大賞, 2011年 (経済産業省)"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Professional IT training program leader"
+                ja="プロフェッショナルIT研修プログラムリーダー"
+              />
+            </li>
+            <li>
+              <Trans
+                en="University lecturer (Modern GP Program)"
+                ja="大学講師 (現代GPプログラム)"
+              />
+            </li>
+            <li><Trans en="Real Estate Transaction Specialist" ja="宅地建物取引士" /></li>
+            <li>
+              <Trans
+                en="Business consultant and mentor"
+                ja="ビジネスコンサルタントおよびメンター"
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 3: Technical Evolution -->
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+          <h3 class="flex items-center gap-2 mt-0">
+            <span class="material-icons">history_edu</span>
+            <Trans en="Foundation Era (1980s-1990s)" ja="基礎形成期（1980年代-1990年代）" />
+          </h3>
+          <ul class="mt-4">
+            <li>
+              <Trans
+                en="1980s: Self-taught programming (BASIC, Z-80 Assembly, MS-DOS)"
+                ja="1980年代：独学でのプログラミング（BASIC、Z-80アセンブラ、MS-DOS）"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Early 1990s: UNIX/X-Window development"
+                ja="1990年代前半：UNIX/X-Window開発"
+              />
+            </li>
+            <li>
+              <Trans en="System-level C/C++ programming" ja="システムレベルのC/C++プログラミング" />
+            </li>
+            <li>
+              <Trans
+                en="1996: Hover-translation technology invention"
+                ja="1996年：ホバー翻訳技術の発明"
+              />
+            </li>
+            <li>
+              <Trans en="Late 1990s: Win16/32 development" ja="1990年代後半：Win16/32開発" />
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+          <h3 class="flex items-center gap-2 mt-0">
+            <span class="material-icons">devices</span>
+            <Trans en="Web & Mobile Era (2000s-2010s)" ja="Web・モバイル期（2000年代-2010年代）" />
+          </h3>
+          <ul class="mt-4">
+            <li>
+              <Trans
+                en="Early 2000s: Core web technologies (HTML/CSS)"
+                ja="2000年代前半：Web基盤技術（HTML/CSS）"
+              />
+            </li>
+            <li>
+              <Trans
+                en="JavaScript development without modern tools"
+                ja="モダンツール以前のJavaScript開発"
+              />
+            </li>
+            <li>
+              <Trans
+                en="PHP-based web application development"
+                ja="PHPベースのWebアプリケーション開発"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Infrastructure setup and management (Linux servers)"
+                ja="インフラ構築と運用（Linuxサーバー）"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Server security and network management"
+                ja="サーバーセキュリティとネットワーク管理"
+              />
+            </li>
+            <li>
+              <Trans
+                en="High-availability system architecture"
+                ja="高可用性システムアーキテクチャ"
+              />
+            </li>
+            <li>
+              <Trans en="Database design & SQL optimization" ja="データベース設計とSQL最適化" />
+            </li>
+            <li>
+              <Trans en="2010s: iOS mobile development" ja="2010年代：iOSモバイル開発" />
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+          <h3 class="flex items-center gap-2 mt-0">
+            <span class="material-icons">rocket_launch</span>
+            <Trans en="Modern Era (2020s-Present)" ja="モダン期（2020年代-現在）" />
+          </h3>
+          <ul class="mt-4">
+            <li>
+              <Trans en="Node.js backend development" ja="Node.jsバックエンド開発" />
+            </li>
+            <li>
+              <Trans
+                en="Python/FastAPI web system development"
+                ja="Python/FastAPIによるWebシステム開発"
+              />
+            </li>
+            <li>
+              <Trans
+                en="WordPress theme & plugin development"
+                ja="WordPressのテーマ・プラグイン開発"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Live commerce system development with WebRTC"
+                ja="WebRTCを活用したライブコマースシステム開発"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Real-time video processing with Canvas API and WebRTC"
+                ja="Canvas APIとWebRTCによるリアルタイム映像処理"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Audio mixing and camera composition using Web APIs"
+                ja="Web APIを使用した音声ミキシングとカメラ映像合成"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Cloud services & Edge computing (Cloudflare)"
+                ja="クラウドサービス・エッジコンピューティング（Cloudflare）"
+              />
+            </li>
+            <li>
+              <Trans en="Python for data processing & analysis" ja="Pythonによるデータ処理・分析" />
+            </li>
+            <li>
+              <Trans
+                en="Exploring Next.js for future projects"
+                ja="次期プロジェクトでのNext.js採用検討"
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 4: Achievements -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+          <h3 class="flex items-center gap-2 mt-0">
+            <span class="material-icons">stars</span>
+            <Trans en="Notable Technical Achievements" ja="主な技術的成果" />
+          </h3>
+          <ul class="mt-4">
+            <li>
+              <Trans
+                en="1996: First Japanese finalist at Computex Taipei (Business Software)"
+                ja="1996年：Computex Taipei日本企業初のファイナリスト（ビジネスソフトウェア部門）"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Late 1990s: International patents for hover-translation technology"
+                ja="1990年代後半：ホバー翻訳技術の国際特許取得"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Late 1990s: Pioneered remote international development teams"
+                ja="1990年代後半：リモート国際開発チームの先駆け"
+              />
+            </li>
+            <li>
+              <Trans
+                en="Late 1990s: Emergency fix for Windows CONCON bug"
+                ja="1990年代後半：Windows CONCONバグの緊急修正プログラム開発"
+              />
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+          <h3 class="flex items-center gap-2 mt-0">
+            <span class="material-icons">bolt</span>
+            <Trans en="Rapid Problem Solving" ja="迅速な問題解決" />
+          </h3>
+          <ul class="mt-4">
+            <li>
+              <Trans
+                en="Quick-response solutions to critical issues"
+                ja="重要な問題への迅速な解決策の提供"
+              />
+            </li>
+            <li>
+              <Trans en="Community-focused development" ja="コミュニティ重視の開発" />
+            </li>
+            <li>
+              <Trans
+                en="Global impact through open solutions"
+                ja="オープンソリューションによる世界的な影響"
+              />
+            </li>
+            <li>
+              <Trans en="System-level debugging expertise" ja="システムレベルのデバッグ専門知識" />
+            </li>
+            <li>
+              <Trans en="Emergency patch development" ja="緊急パッチの開発" />
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 5: Major Contributions -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+        <h2 class="flex items-center gap-2 mt-0">
+          <span class="material-icons">auto_awesome</span>
+          <Trans en="Notable Contributions" ja="主要な貢献" />
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold mb-2">
+              <Trans en="Hover Translation Pioneer" ja="ホバー翻訳のパイオニア" />
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              <Trans
+                en="Pioneered the hover-translation technology in the late 1990s, introducing a groundbreaking way for users to interact with foreign language content in Windows applications. This innovation, protected by international patents, played a significant role in early cross-language computing, particularly in East Asia. While modern solutions have evolved, this technology paved the way for today's seamless translation interfaces."
+                ja="1990年代後半、Windowsアプリケーションにおける画期的な外国語コンテンツ操作方法として、ホバー翻訳技術を開発。国際特許で保護されたこの革新的技術は、特に東アジアにおける初期の多言語コンピューティングで重要な役割を果たしました。現代では新しいソリューションへと進化していますが、この技術は今日のシームレスな翻訳インターフェースの先駆けとなりました。"
+              />
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-2">
+              <Trans en="Community Problem Solver" ja="コミュニティの問題解決者" />
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              <Trans
+                en="Developed a critical fix for the Windows CONCON bug that recorded tens of thousands of downloads overnight, providing an essential solution for users worldwide before the official patch was released. This impromptu solution, created while recovering from illness, demonstrated the power of rapid response to global technical challenges."
+                ja="Windows CONCONバグの重要な修正プログラムを開発し、一晩で数万回のダウンロードを記録。公式パッチのリリース前に、世界中のユーザーに不可欠なソリューションを提供しました。病気からの回復期に作成されたこの即興的なソリューションは、世界規模の技術的課題への迅速な対応力を実証しました。"
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 6: Philosophy & Vision -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+        <h2 class="flex items-center gap-2 mt-0">
+          <span class="material-icons">insights</span>
+          <Trans en="Development Philosophy" ja="開発哲学" />
+        </h2>
+        <p>
+          <Trans
+            en="Our approach to development has always been about solving real problems, whether planned or unexpected. From creating groundbreaking hover-translation technology to providing emergency fixes for critical Windows issues, we've demonstrated the ability to deliver solutions that make a difference. Today, we bring this same commitment to rapid problem-solving and innovation to our modern development projects, enhanced by AI capabilities and decades of experience."
+            ja="私たちの開発アプローチは、計画的であれ予期せぬものであれ、常に実際の問題解決を重視してきました。画期的なホバー翻訳技術の創造からWindowsの重要な問題に対する緊急修正の提供まで、私たちは真の変化をもたらすソリューションを提供する能力を実証してきました。今日、この迅速な問題解決とイノベーションへの同じ取り組みを、AI機能と数十年の経験で強化された最新の開発プロジェクトにも活かしています。"
+          />
+        </p>
+      </div>
+
+      <!-- Section 7: Tech Blog -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-8">
+        <h2 class="flex items-center gap-2 mt-0">
+          <span class="material-icons">article</span>
+          <Trans en="Tech Blog: AQZ Tech Chronicles" ja="テックブログ：AQZ Tech Chronicles" />
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">
+              <Trans
+                en="A technology blog that combines deep technical insights with real-world experiences. From current cybersecurity challenges to reflections on decades of system development, we share practical knowledge and perspectives that can only come from extensive field experience."
+                ja="技術的な深い洞察と実務経験を組み合わせたテクノロジーブログ。現代のサイバーセキュリティの課題から、数十年にわたるシステム開発の振り返りまで、豊富な実務経験からしか得られない実践的な知識と視点を共有しています。"
+              />
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="https://aqz.jp/blog/"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <span class="material-icons text-sm">language</span>
+                <Trans en="Read in Japanese" ja="日本語版を読む" mode="dark" />
+              </a>
+              <a
+                href="https://aqz-tech.com"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <span class="material-icons text-sm">translate</span>
+                <Trans en="English Version (Coming Soon)" ja="英語版（準備中）" mode="light" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-md font-semibold mb-3">
+              <Trans en="Featured Articles" ja="注目の記事" />
+            </h4>
+            <div class="space-y-4">
+              <div class="border-l-4 border-blue-600 pl-4">
+                <Trans
+                  en="Email Security Enhancement with SPF, DKIM, and DMARC: Configuration and Impact Analysis"
+                  ja="SPF、DKIM、DMARCで強化するメールセキュリティ：設定と効果の解説"
+                />
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <Trans
+                    en="Technical deep-dive into email security protocols with practical implementation insights"
+                    ja="メールセキュリティプロトコルの技術解説と実装のポイント"
+                  />
+                </p>
+              </div>
+              <div class="border-l-4 border-blue-600 pl-4">
+                <Trans
+                  en="Requirements Definition: A Practical Approach from 30 Years of Experience"
+                  ja="要求定義と要件定義：30年の実務から得た実践的アプローチ"
+                />
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <Trans
+                    en="Insights from engineering, management, and consulting perspectives"
+                    ja="エンジニアリング、経営、コンサルティングの視点からの知見"
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

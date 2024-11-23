@@ -1,0 +1,127 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Trans from "@/components/Trans.astro";
+import WaveDivider from "@/components/WaveDivider.astro";
+
+const upcomingDemos = [
+  {
+    title: "Cloudflare Integration",
+    titleJa: "Cloudflare 連携",
+    description: "Integration patterns with Cloudflare Pages and Workers",
+    descriptionJa: "Cloudflare PagesとWorkersの連携パターン",
+    tags: ["Cloudflare", "Edge Computing"],
+    icon: "cloud",
+  },
+];
+---
+
+<Layout title="Demos - Astro Components" description="Cloud integration demos with Cloudflare">
+  <!-- Hero Section -->
+  <div class="relative min-h-[400px] flex items-center">
+    <div class="absolute inset-0 z-0">
+      <img
+        src="src/assets/images/aqz-astro-index-hero.jpg"
+        alt="Demos hero background"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 to-blue-800/90"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 py-12">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm mb-6"
+      >
+        <span class="material-icons text-xs text-white">computer</span>
+        <Trans
+          en="Cloud Integration Demos"
+          ja="クラウド連携デモ"
+          enClass="text-white"
+          jaClass="text-white/80 text-sm"
+        />
+      </div>
+      <h1 class="text-5xl font-bold text-white mb-4">
+        <Trans en="Coming Soon" ja="準備中" enClass="text-white" jaClass="text-white/80" />
+      </h1>
+      <p class="text-xl text-blue-100">
+        <Trans
+          en="We're working on exciting demos to showcase Astro's capabilities with cloud services"
+          ja="Astroのクラウドサービスとの連携機能を紹介する魅力的なデモを準備中です"
+          enClass="text-blue-100"
+          jaClass="text-blue-200 text-lg"
+        />
+      </p>
+    </div>
+  </div>
+
+  <WaveDivider height="h-16" blur="8" />
+
+  <!-- Upcoming Demos -->
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
+      <span class="material-icons text-blue-600">upcoming</span>
+      <Trans en="Upcoming Demos" ja="今後公開予定のデモ" />
+    </h2>
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      <Trans
+        en="Here's what we're working on. Stay tuned!"
+        ja="現在開発中のデモです。お楽しみに！"
+      />
+    </p>
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        upcomingDemos.map((demo) => (
+          <div class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="material-icons text-blue-600 dark:text-blue-400 text-2xl">
+                {demo.icon}
+              </span>
+              <div>
+                <h3 class="text-xl font-semibold">
+                  <Trans en={demo.title} ja={demo.titleJa} />
+                </h3>
+              </div>
+            </div>
+            <div class="space-y-2 mb-4">
+              <Trans en={demo.description} ja={demo.descriptionJa} />
+            </div>
+            <div class="flex gap-2">
+              {demo.tags.map((tag) => (
+                <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Newsletter Section -->
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl text-white p-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl font-bold mb-4">
+          <Trans en="Stay Updated" ja="最新情報をお届けします" mode="dark" />
+        </h2>
+        <p class="text-blue-100 mb-6">
+          <Trans
+            en="Subscribe to our tech blog to get notified when new demos are released"
+            ja="新しいデモのリリース情報を受け取るには、テックブログをご購読ください"
+            mode="dark"
+          />
+        </p>
+        <div class="flex gap-4 justify-center">
+          <a
+            href="https://aqz.jp/blog/"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+          >
+            <span class="material-icons">language</span>
+            <Trans en="Read in Japanese" ja="日本語版を読む" mode="light" />
+          </a>
+          <a href="https://aqz-tech.com" class="inline-flex"></a>
+        </div>
+      </div>
+    </div>
+  </div></Layout
+>

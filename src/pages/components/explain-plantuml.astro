@@ -1,0 +1,220 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PlantUML from "@/components/PlantUML.astro";
+
+const sequenceDiagram = `@startuml
+!theme plain
+scale 1.2
+skinparam ResponseMessageBelowArrow true
+
+participant "GitHub Actions" as GA
+participant "Cloudflare Pages" as CF
+participant "astro" as A
+
+box "Initial Setup" #E8F4E8
+activate CF
+CF -> GA: Issue Deploy Webhook
+deactivate CF
+end box
+
+box "Automation Setup" #F4E8E8
+activate GA
+GA -> GA: Configure Schedule\\n(cron: '0 10 * * *')
+deactivate GA
+end box
+
+loop Daily at UTC 10:00
+    GA -> CF: Execute Deploy Webhook
+    activate GA
+    deactivate GA
+
+    activate CF
+    CF->A : Build
+    activate A
+    A -> A: Filter Articles\\nCurrent DateTime >= pubDate
+    A->CF : Deploy
+    deactivate A
+    deactivate CF
+end loop
+@enduml`;
+
+const componentDiagram = `@startuml
+@startuml
+!theme plain
+skinparam defaultTextAlignment center
+
+node "Reception Area" {
+    node "Reception Terminal\\n(MS-DOS)" as client
+
+    node "OCR Device" <<device>> as ocr
+
+    node "Printer" <<device>> as printer
+}
+
+node "Development Room(?)" as sroom {
+    node "Server(UNIX)" as server {
+        database "Customer Info\\nDB" as db
+        component "DB Server\\nApplication" as dbApp
+    }
+}
+
+ocr -right-> client : OMR Sheet\\nData Transfer
+client <--> dbApp : Data Exchange
+client -u-> printer : Print\\nApplication Details
+
+dbApp -r-> db : Data\\nRead/Write
+
+note bottom of ocr
+  Scan customer
+  filled OMR
+  sheets
+end note
+
+note right of client
+  - 10+ Reception Terminals
+  - Developed in MS-C
+  - Using EMS
+end note
+
+note right of printer
+  Print copy of
+  application
+  details
+end note
+@enduml`;
+
+const installCode = `npm install plantuml-encoder @types/plantuml-encoder
+# or
+yarn add plantuml-encoder @types/plantuml-encoder
+# or
+pnpm add plantuml-encoder @types/plantuml-encoder`;
+
+const usageCode = `---
+import PlantUML from "../components/PlantUML.astro";
+---
+
+<PlantUML
+  diagram="
+@startuml
+Alice -> Bob: Hello
+@enduml
+  "
+/>`;
+---
+
+<Layout
+  title="PlantUML Component - Astro Components"
+  description="Simple PlantUML diagram renderer for Astro / AstroでPlantUML図を表示するシンプルなコンポーネント"
+>
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <div class="mb-12">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-full text-sm text-blue-600 dark:text-blue-400 mb-6"
+      >
+        <span class="material-icons text-xs">account_tree</span>
+        Diagram Component
+      </div>
+      <h1 class="text-4xl font-bold mb-4">PlantUML Component</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400">
+        Simple PlantUML diagram renderer for Astro<br />
+        AstroでPlantUML図を表示するシンプルなコンポーネント
+      </p>
+    </div>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <h2 class="flex items-center gap-2">
+        <span class="material-icons">download</span>
+        Installation / インストール
+      </h2>
+      <pre
+        class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto"><code>{installCode}</code></pre>
+
+      <h2 class="flex items-center gap-2 mt-12">
+        <span class="material-icons">code</span>
+        Usage / 使い方
+      </h2>
+      <pre
+        class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto"><code>{usageCode}</code></pre>
+
+      <h2 class="flex items-center gap-2 mt-12">
+        <span class="material-icons">preview</span>
+        Examples / 使用例
+      </h2>
+
+      <h3>Sequence Diagram / シーケンス図</h3>
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg mb-8">
+        <PlantUML diagram={sequenceDiagram} />
+      </div>
+
+      <h3>Component Diagram / コンポーネント図</h3>
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg mb-8">
+        <PlantUML diagram={componentDiagram} />
+      </div>
+
+      <h2 class="flex items-center gap-2 mt-12">
+        <span class="material-icons">settings</span>
+        Props / プロパティ
+      </h2>
+      <table class="mt-8 w-full border border-gray-200">
+        <thead>
+          <tr>
+            <th
+              class="border border-gray-700 dark:border-gray-200 p-2 text-left bg-gray-100 dark:bg-gray-800"
+              >Name</th
+            >
+            <th
+              class="border border-gray-700 dark:border-gray-200 p-2 text-left bg-gray-100 dark:bg-gray-800"
+              >Type</th
+            >
+            <th
+              class="border border-gray-700 dark:border-gray-200 p-2 text-left bg-gray-100 dark:bg-gray-800"
+              >Default</th
+            >
+            <th
+              class="border border-gray-700 dark:border-gray-200 p-2 text-left bg-gray-100 dark:bg-gray-800"
+              >Description</th
+            >
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border border-gray-700 dark:border-gray-200 p-2">diagram</td>
+            <td class="border border-gray-700 dark:border-gray-200 p-2"><code>string</code></td>
+            <td class="border border-gray-700 dark:border-gray-200 p-2">Required</td>
+            <td class="border border-gray-700 dark:border-gray-200 p-2"
+              >PlantUML diagram text<br />PlantUML図の定義テキスト</td
+            >
+          </tr>
+          <tr>
+            <td class="border border-gray-700 dark:border-gray-200 p-2">className</td>
+            <td class="border border-gray-700 dark:border-gray-200 p-2"><code>string</code></td>
+            <td class="border border-gray-700 dark:border-gray-200 p-2"
+              ><code>"w-full max-w-4xl mx-auto"</code></td
+            >
+            <td class="border border-gray-700 dark:border-gray-200 p-2"
+              >CSS classes for the img element<br />img要素のCSSクラス</td
+            >
+          </tr>
+        </tbody>
+      </table>
+      <h2 class="flex items-center gap-2 mt-12">
+        <span class="material-icons">info</span>
+        Notes / 注意事項
+      </h2>
+      <ul>
+        <li>
+          Requires internet connection (uses public PlantUML server)<br />
+          インターネット接続が必要です（公開PlantUMLサーバーを使用）
+        </li>
+        <li>
+          SVG output for crisp rendering<br />
+          SVG出力でクリアな描画を実現
+        </li>
+        <li>
+          Simple API with TypeScript support<br />
+          TypeScriptサポート付きのシンプルなAPI
+        </li>
+      </ul>
+    </div>
+  </div>
+</Layout>
