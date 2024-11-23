@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import PlantUML from "@/components/PlantUML.astro";
+import { Code } from "astro-expressive-code/components";
 
 const sequenceDiagram = `@startuml
 !theme plain
@@ -83,12 +84,6 @@ note right of printer
 end note
 @enduml`;
 
-const installCode = `npm install plantuml-encoder @types/plantuml-encoder
-# or
-yarn add plantuml-encoder @types/plantuml-encoder
-# or
-pnpm add plantuml-encoder @types/plantuml-encoder`;
-
 const usageCode = `---
 import PlantUML from "../components/PlantUML.astro";
 ---
@@ -107,36 +102,62 @@ Alice -> Bob: Hello
   description="Simple PlantUML diagram renderer for Astro / AstroでPlantUML図を表示するシンプルなコンポーネント"
 >
   <div class="max-w-7xl mx-auto px-4 py-16">
-    <div class="mb-12">
-      <div
-        class="inline-flex items-center gap-2 px-4 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-full text-sm text-blue-600 dark:text-blue-400 mb-6"
-      >
-        <span class="material-icons text-xs">account_tree</span>
-        Diagram Component
-      </div>
-      <h1 class="text-4xl font-bold mb-4">PlantUML Component</h1>
-      <p class="text-xl text-gray-600 dark:text-gray-400">
-        Simple PlantUML diagram renderer for Astro<br />
-        AstroでPlantUML図を表示するシンプルなコンポーネント
-      </p>
-    </div>
-
     <div class="prose dark:prose-invert max-w-none">
-      <h2 class="flex items-center gap-2">
-        <span class="material-icons">download</span>
-        Installation / インストール
-      </h2>
-      <pre
-        class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto"><code>{installCode}</code></pre>
+      <div class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Installation / インストール</h2>
+        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 space-y-4">
+          <div>
+            <p class="font-mono mb-2 text-gray-900 dark:text-gray-100">1. Clone the repository:</p>
+            <div class="bg-white dark:bg-gray-900 p-2 rounded">
+              <Code code="git clone https://github.com/aqz-saito/astro.aqz.jp.git" lang="bash" />
+            </div>
+          </div>
 
-      <h2 class="flex items-center gap-2 mt-12">
+          <div>
+            <p class="font-mono mb-2 text-gray-900 dark:text-gray-100">
+              2. Copy the component to your project:
+            </p>
+            <div class="bg-white dark:bg-gray-900 p-2 rounded">
+              <code>
+                components/<br />
+                └── PlantUML.astro
+              </code>
+            </div>
+          </div>
+
+          <div>
+            <p class="font-mono mb-2 text-gray-900 dark:text-gray-100">3. Install dependencies:</p>
+            <div class="bg-white dark:bg-gray-900 p-2 rounded">
+              <Code code="npm install plantuml-encoder @types/plantuml-encoder" lang="bash" />
+            </div>
+          </div>
+
+          <div>
+            <p class="font-mono mb-2 text-gray-900 dark:text-gray-100">4. Import and use:</p>
+            <div class="bg-white dark:bg-gray-900 p-2 rounded">
+              <Code code="import PlantUML from '@/components/PlantUML.astro';" lang="typescript" />
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span class="material-icons text-sm text-blue-400 dark:text-blue-300">code</span>
+            <a
+              href="https://github.com/aqz-saito/astro.aqz.jp/blob/main/components/PlantUML.astro"
+              class="text-blue-400 dark:text-blue-300 hover:underline"
+            >
+              View source on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+      <h2 class="flex items-center gap-2 text-2xl font-semibold mb-4">
         <span class="material-icons">code</span>
         Usage / 使い方
       </h2>
-      <pre
-        class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto"><code>{usageCode}</code></pre>
-
-      <h2 class="flex items-center gap-2 mt-12">
+      <div class="bg-white dark:bg-gray-900 p-4 rounded-lg overflow-x-auto">
+        <Code code={usageCode} lang="astro" />
+      </div>
+      <h2 class="flex items-center gap-2 text-2xl font-semibold mb-4">
         <span class="material-icons">preview</span>
         Examples / 使用例
       </h2>

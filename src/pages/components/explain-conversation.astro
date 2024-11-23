@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Conversation from "@/components/Conversation.astro";
-import { Code } from "astro:components";
+import { Code } from "astro-expressive-code/components";
 
 const examples = [
   {
@@ -85,11 +85,7 @@ const renderConversation = (code: string) => {
         <div>
           <p class="font-mono mb-2">1. Clone the repository:</p>
           <div class="flex justify-between items-center bg-gray-800 p-2 rounded">
-            <Code
-              code="git clone https://github.com/aqz-saito/astro-components.git"
-              lang="bash"
-              theme="dark-plus"
-            />
+            <Code code="git clone https://github.com/aqz-saito/astro.aqz.jp.git" lang="bash" />
             <button class="text-gray-400 hover:text-white transition-colors">
               <span class="material-icons">content_copy</span>
             </button>
@@ -110,7 +106,6 @@ const renderConversation = (code: string) => {
             <Code
               code="import Conversation from '@/components/Conversation.astro';"
               lang="typescript"
-              theme="dark-plus"
             />
           </div>
         </div>
@@ -118,7 +113,7 @@ const renderConversation = (code: string) => {
         <div class="flex items-center gap-2 text-blue-400 hover:text-blue-300">
           <span class="material-icons text-sm">code</span>
           <a
-            href="https://github.com/aqz-saito/astro-components/blob/main/components/Conversation.astro"
+            href="https://github.com/aqz-saito/astro.aqz.jp/blob/main/components/Conversation.astro"
             class="hover:underline"
           >
             View source on GitHub
@@ -137,7 +132,7 @@ const renderConversation = (code: string) => {
           <h3 class="text-xl font-semibold">Basic Usage</h3>
         </div>
         <div class="p-4 bg-gray-50 dark:bg-gray-900">
-          <Code code={examples[0].code} lang="astro" theme="dark-plus" />
+          <Code code={examples[0].code} lang="astro" />
         </div>
         <div class="p-4 border-t border-gray-200 dark:border-gray-700">
           <div class="prose dark:prose-invert max-w-none">
@@ -153,7 +148,7 @@ const renderConversation = (code: string) => {
           <h3 class="text-xl font-semibold">Color Variants</h3>
         </div>
         <div class="p-4 bg-gray-50 dark:bg-gray-900">
-          <Code code={examples[1].code} lang="astro" theme="dark-plus" />
+          <Code code={examples[1].code} lang="astro" />
         </div>
         <div class="p-4 border-t border-gray-200 dark:border-gray-700">
           <div class="prose dark:prose-invert max-w-none">
@@ -176,7 +171,7 @@ const renderConversation = (code: string) => {
           <h3 class="text-xl font-semibold">Chat Messages</h3>
         </div>
         <div class="p-4 bg-gray-50 dark:bg-gray-900">
-          <Code code={useCases[0].code} lang="astro" theme="dark-plus" />
+          <Code code={useCases[0].code} lang="astro" />
         </div>
         <div class="p-4 border-t border-gray-200 dark:border-gray-700">
           <div class="prose dark:prose-invert max-w-none">
@@ -195,7 +190,7 @@ const renderConversation = (code: string) => {
           <h3 class="text-xl font-semibold">Tips & Notifications</h3>
         </div>
         <div class="p-4 bg-gray-50 dark:bg-gray-900">
-          <Code code={useCases[1].code} lang="astro" theme="dark-plus" />
+          <Code code={useCases[1].code} lang="astro" />
         </div>
         <div class="p-4 border-t border-gray-200 dark:border-gray-700">
           <div class="prose dark:prose-invert max-w-none">

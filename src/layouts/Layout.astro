@@ -36,6 +36,33 @@ const { title, description = "Astro Components Showcase / Astroコンポーネ�
   <body
     class="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col text-gray-900 dark:text-gray-100"
   >
+    <script>
+      // コピーボタンの機能を初期化
+      document.addEventListener("DOMContentLoaded", () => {
+        const copyButtons = document.querySelectorAll(".copy-button");
+        copyButtons.forEach((button) => {
+          button.addEventListener("click", async () => {
+            const textToCopy = button.getAttribute("data-copy-text");
+            if (textToCopy) {
+              try {
+                await navigator.clipboard.writeText(textToCopy);
+                const icon = button.querySelector(".material-icons");
+                if (icon) {
+                  const originalText = icon.textContent;
+                  icon.textContent = "done";
+                  setTimeout(() => {
+                    icon.textContent = originalText;
+                  }, 2000);
+                }
+              } catch (err) {
+                console.error("Failed to copy:", err);
+              }
+            }
+          });
+        });
+      });
+    </script>
+
     <!-- Elevated Header with Shadow -->
     <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-800/90 shadow-md backdrop-blur-sm">
       <div class="max-w-7xl mx-auto px-4 py-3">
