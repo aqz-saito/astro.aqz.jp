@@ -1,0 +1,53 @@
+---
+interface Props {
+  en: string;
+  ja: string;
+  enClass?: string;
+  jaClass?: string;
+  className?: string;
+  inverted?: boolean;
+  mode?: "light" | "dark" | "auto"; // 色モードを指定するオプション
+}
+
+const {
+  en,
+  ja,
+  enClass = "",
+  jaClass = "",
+  className = "translation",
+  inverted = false,
+  mode = "auto", // デフォルトは自動（テーマに追従）
+} = Astro.props;
+
+// モードに基づいてカラークラスを決定する関数
+const getColorClass = (isJa: boolean, inverted: boolean, mode: "light" | "dark" | "auto") => {
+  // 基本となるテキストサイズクラス（日本語の場合のみ）
+  const baseJaClass = isJa ? "text-sm" : "";
+
+  // モード別のカラー定義
+  const colorClasses = {
+    light: {
+      normal: isJa ? "text-gray-600" : "text-gray-900",
+      inverted: isJa ? "text-gray-400" : "text-gray-100",
+    },
+    dark: {
+      normal: isJa ? "text-gray-400" : "text-gray-100",
+      inverted: isJa ? "text-gray-600" : "text-gray-900",
+    },
+    auto: {
+      normal: isJa ? "text-gray-600 dark:text-gray-400" : "text-gray-900 dark:text-gray-100",
+      inverted: isJa ? "text-gray-400 dark:text-gray-600" : "text-gray-100 dark:text-gray-900",
+    },
+  };
+
+  return `${baseJaClass} ${colorClasses[mode][inverted ? "inverted" : "normal"]}`;
+};
+
+const finalEnClass = enClass || getColorClass(false, inverted, mode);
+const finalJaClass = jaClass || getColorClass(true, inverted, mode);
+---
+
+<span class={className}>
+  <span lang="en" class={`block ${finalEnClass}`}>{en}</span>
+  <span lang="ja" class={`block ${finalJaClass}`}>{ja}</span>
+</span>

@@ -1,0 +1,186 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Trans from "@/components/Trans.astro";
+import WaveDivider from "@/components/WaveDivider.astro";
+
+const components = [
+  {
+    title: "Conversation UI",
+    titleJa: "会話UI",
+    description:
+      "A simple chat bubble component with multiple color variants and dark mode support. Perfect for displaying dialogues, tips, and notifications.",
+    descriptionJa:
+      "複数のカラーバリエーションとダークモードに対応したシンプルな吹き出しコンポーネント。会話、ヒント、通知の表示に最適。",
+    href: "/components/explain-conversation",
+    tags: ["UI", "Dark Mode", "Tailwind CSS"],
+    icon: "chat_bubble",
+  },
+  {
+    title: "PlantUML Renderer",
+    titleJa: "PlantUMLレンダラー",
+    description:
+      "A simple component to render PlantUML diagrams in Astro using the official PlantUML server. Just write your diagram text and get SVG output.",
+    descriptionJa:
+      "公式PlantUMLサーバーを使用してダイアグラムを表示するシンプルなコンポーネント。テキストを書くだけでSVG出力が得られます。",
+    href: "/components/explain-plantuml",
+    tags: ["Diagram", "PlantUML", "SVG"],
+    icon: "account_tree",
+  },
+];
+
+const categories = [
+  {
+    title: "UI Components",
+    titleJa: "UIコンポーネント",
+    description: "Basic building blocks for your Astro applications",
+    descriptionJa: "Astroアプリケーションの基本的な構成要素",
+    icon: "widgets",
+    components: components.filter((c) => c.tags.includes("UI")),
+  },
+  {
+    title: "Visualization",
+    titleJa: "可視化",
+    description: "Components for diagrams, charts, and visual representations",
+    descriptionJa: "ダイアグラム、チャート、視覚的表現のためのコンポーネント",
+    icon: "insights",
+    components: components.filter((c) => c.tags.includes("Diagram")),
+  },
+];
+---
+
+<Layout
+  title="Components - Astro Components"
+  description="Reusable Astro components for modern web development"
+>
+  <!-- Hero Section -->
+  <div class="relative min-h-[400px] flex items-center">
+    <div class="absolute inset-0 z-0">
+      <img
+        src="src/assets/images/aqz-astro-index-hero.jpg"
+        alt="Components hero background"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 to-blue-800/90"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 py-12">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm mb-6"
+      >
+        <span class="material-icons text-xs text-white">widgets</span>
+        <Trans
+          en="Reusable Components"
+          ja="再利用可能なコンポーネント"
+          enClass="text-white"
+          jaClass="text-white/80 text-sm"
+        />
+      </div>
+      <h1 class="text-5xl font-bold text-white mb-4">
+        <Trans
+          en="Astro Components"
+          ja="Astroコンポーネント"
+          enClass="text-white"
+          jaClass="text-white/80"
+        />
+      </h1>
+      <p class="text-xl text-blue-100">
+        <Trans
+          en="A collection of high-quality, reusable components for your Astro projects"
+          ja="Astroプロジェクトのための高品質で再利用可能なコンポーネント集"
+          enClass="text-blue-100"
+          jaClass="text-blue-200 text-lg"
+        />
+      </p>
+    </div>
+  </div>
+
+  <WaveDivider height="h-16" blur="8" />
+
+  <!-- Categories Section -->
+  {
+    categories.map((category) => (
+      <div class="max-w-7xl mx-auto px-4 py-16">
+        <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
+          <span class="material-icons text-blue-600">{category.icon}</span>
+          <Trans en={category.title} ja={category.titleJa} />
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 mb-8">
+          <Trans en={category.description} ja={category.descriptionJa} />
+        </p>
+        <div class="grid gap-6 md:grid-cols-2">
+          {category.components.map((component) => (
+            <a
+              href={component.href}
+              class="group block bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="material-icons text-blue-600 dark:text-blue-400 text-2xl">
+                    {component.icon}
+                  </span>
+                  <div>
+                    <h3 class="text-xl font-semibold group-hover:text-blue-600 transition-colors">
+                      <Trans en={component.title} ja={component.titleJa} />
+                    </h3>
+                  </div>
+                </div>
+                <div class="space-y-2 mb-4">
+                  <Trans en={component.description} ja={component.descriptionJa} />
+                </div>
+                <div class="flex gap-2">
+                  {component.tags.map((tag) => (
+                    <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+
+  <!-- GitHub Section -->
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl text-white p-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
+            <span class="material-icons">code</span>
+            <Trans en="Open Source" ja="オープンソース" mode="dark" />
+          </h2>
+          <p class="text-blue-100 mb-6">
+            <Trans
+              en="All components are available on GitHub. Feel free to contribute!"
+              ja="すべてのコンポーネントはGitHubで公開されています。ご自由に貢献ください！"
+              mode="dark"
+            />
+          </p>
+          <a
+            href="https://github.com/aqz-saito"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+          >
+            <span class="material-icons">star</span>
+            <Trans en="Star on GitHub" ja="GitHubでスター" mode="light" />
+          </a>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-blue-700/50 rounded-lg p-4">
+            <div class="text-3xl font-bold mb-2">{components.length}</div>
+            <div class="text-blue-200">
+              <Trans en="Components" ja="コンポーネント" mode="dark" />
+            </div>
+          </div>
+          <div class="bg-blue-700/50 rounded-lg p-4">
+            <div class="text-3xl font-bold mb-2">2</div>
+            <div class="text-blue-200">
+              <Trans en="Categories" ja="カテゴリー" mode="dark" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

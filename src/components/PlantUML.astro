@@ -1,0 +1,15 @@
+---
+// src/components/PlantUML.astro
+interface Props {
+  diagram: string;
+  className?: string;
+}
+
+const { diagram, className = "w-full max-w-4xl mx-auto" } = Astro.props;
+import plantumlEncoder from "plantuml-encoder";
+
+const encodedDiagram = plantumlEncoder.encode(diagram);
+const serverUrl = "http://www.plantuml.com/plantuml/svg/";
+---
+
+<img src={`${serverUrl}${encodedDiagram}`} alt="PlantUML diagram" class={className} />

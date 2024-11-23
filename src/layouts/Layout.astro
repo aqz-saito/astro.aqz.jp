@@ -1,0 +1,192 @@
+---
+import Trans from "@/components/Trans.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Astro Components Showcase / Astroコンポーネントショーケース" } =
+  Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <!-- ダークモードのちらつき防止スクリプト -->
+    <script is:inline>
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons" />
+  </head>
+  <body
+    class="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col text-gray-900 dark:text-gray-100"
+  >
+    <!-- Elevated Header with Shadow -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-800/90 shadow-md backdrop-blur-sm">
+      <div class="max-w-7xl mx-auto px-4 py-3">
+        <nav class="flex justify-between items-center">
+          <a
+            href="/"
+            class="text-xl font-bold text-blue-600 dark:text-blue-400 flex items-center gap-2"
+          >
+            <span class="material-icons">code</span>
+            astro.aqz.jp
+          </a>
+          <div class="flex gap-6">
+            <a
+              href="/components"
+              class="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              <span class="material-icons text-sm">widgets</span>
+              Components
+            </a>
+            <a
+              href="/demos"
+              class="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              <span class="material-icons text-sm">play_circle</span>
+              Demos
+            </a>
+            <a
+              href="/about"
+              class="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              <span class="material-icons text-sm">info</span>
+              About
+            </a>
+            <ThemeToggle />
+            <a
+              href="https://github.com/aqz-saito"
+              class="flex items-center gap-1 px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
+            >
+              <span class="material-icons text-sm">code</span>
+              GitHub
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Consolidated Footer -->
+    <footer class="bg-white dark:bg-gray-800 shadow-inner mt-16">
+      <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold mb-4">About</h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              <Trans
+                en="A resource site for building modern web applications, providing high-quality Astro components and demos."
+                ja="高品質なAstroコンポーネントとデモを提供する、モダンなWebアプリケーション構築のためのリソースサイトです。"
+              />
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Menu</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="/components" class="text-blue-600 dark:text-blue-400 hover:underline">
+                  <span class="material-icons text-sm align-middle">widgets</span>
+                  Components
+                </a>
+              </li>
+              <li>
+                <a href="/demos" class="text-blue-600 dark:text-blue-400 hover:underline">
+                  <span class="material-icons text-sm align-middle">computer</span>
+                  Demos
+                </a>
+              </li>
+              <li>
+                <a href="/about" class="text-blue-600 dark:text-blue-400 hover:underline">
+                  <span class="material-icons text-sm align-middle">info</span>
+                  About
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/aqz-saito"
+                  class="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  <span class="material-icons text-sm align-middle">code</span>
+                  GitHub
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Support</h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="https://github.com/aqz-saito/issues"
+                  class="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  <span class="material-icons text-sm align-middle">bug_report</span>
+                  Report an Issue
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://aqz.jp/contact-us/"
+                  class="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  <span class="material-icons text-sm align-middle">email</span>
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Tech Blog</h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="https://aqz.jp/blog/"
+                  class="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-2"
+                >
+                  <span class="material-icons text-sm">article</span>
+                  AQZ Tech Chronicles (日本語)
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://aqz-tech.com"
+                  class="text-gray-500 dark:text-gray-400 hover:underline flex items-center gap-2"
+                >
+                  <span class="material-icons text-sm">article</span>
+                  <div>
+                    AQZ Tech Chronicles (EN)
+                    <span class="text-xs ml-2 text-gray-400 dark:text-gray-500">Coming Soon</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center text-gray-600 dark:text-gray-400"
+        >
+          <p>&copy; {new Date().getFullYear()} AQZ LLC Tokyo Japan</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

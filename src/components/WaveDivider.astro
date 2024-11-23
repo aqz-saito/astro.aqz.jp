@@ -1,0 +1,36 @@
+---
+interface Props {
+  height?: string;
+  blur?: string; // ぼかしの強さを制御するためのプロパティを追加
+}
+
+const {
+  height = "h-24",
+  blur = "3", // デフォルトのぼかし強度
+} = Astro.props;
+---
+
+<div class={`relative w-full ${height} overflow-hidden`}>
+  <div class="absolute inset-0 bg-gradient-to-b from-blue-600 to-gray-50 dark:to-gray-900">
+    <svg
+      class="absolute bottom-0 w-full h-full"
+      viewBox="0 0 1440 200"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+    >
+      <!-- フィルターの定義 -->
+      <defs>
+        <filter id="wave-blur">
+          <feGaussianBlur in="SourceGraphic" stdDeviation={blur}></feGaussianBlur>
+        </filter>
+      </defs>
+
+      <path
+        filter="url(#wave-blur)"
+        fill="currentColor"
+        class="fill-gray-50 dark:fill-gray-900"
+        d="M0,160L48,165.3C96,171,192,181,288,170.7C384,160,480,128,576,128C672,128,768,160,864,160C960,160,1056,128,1152,122.7C1248,117,1344,139,1392,149.3L1440,160L1440,200L1392,200C1344,200,1248,200,1152,200C1056,200,960,200,864,200C768,200,672,200,576,200C480,200,384,200,288,200C192,200,96,200,48,200L0,200Z"
+      ></path>
+    </svg>
+  </div>
+</div>

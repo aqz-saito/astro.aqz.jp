@@ -1,0 +1,213 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Conversation from "@/components/Conversation.astro";
+import { Code } from "astro:components";
+
+const examples = [
+  {
+    title: "Basic Usage",
+    code: `<Conversation>
+  This is a basic conversation bubble.
+</Conversation>`,
+  },
+  {
+    title: "Color Variants",
+    code: `<Conversation variant="blue">Blue theme</Conversation>
+<Conversation variant="green">Green theme</Conversation>
+<Conversation variant="purple">Purple theme</Conversation>`,
+  },
+];
+
+const useCases = [
+  {
+    title: "Chat Messages",
+    code: `<Conversation variant="blue">
+  Hey there! How can I help you today?
+</Conversation>
+<Conversation variant="purple">
+  I'd like to learn more about your services.
+</Conversation>`,
+  },
+  {
+    title: "Tips & Notifications",
+    code: `<Conversation variant="green">
+  Pro Tip: You can use keyboard shortcuts to navigate faster!
+</Conversation>`,
+  },
+];
+
+// Helper function to render conversation components
+const renderConversation = (code: string) => {
+  return code
+    .split("\n")
+    .map((line) => {
+      if (!line.trim()) return null;
+      return line.trim();
+    })
+    .filter(Boolean);
+};
+---
+
+<Layout title="Conversation UI Component - Astro Components">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Component Header -->
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold mb-4">Conversation UI Component</h1>
+      <p class="text-gray-600 dark:text-gray-400 text-lg">
+        A lightweight chat bubble component with dark mode support and multiple color variants.
+      </p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Features</h2>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {
+          [
+            "Three color variants: blue, green, and purple",
+            "Dark mode support out of the box",
+            "Tailwind CSS styling",
+            "Responsive design",
+          ].map((feature) => (
+            <li class="flex items-center gap-2">
+              <span class="material-icons text-blue-600 dark:text-blue-400">check_circle</span>
+              <span class="text-gray-700 dark:text-gray-300">{feature}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Installation Section -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Installation</h2>
+      <div class="bg-gray-900 text-white rounded-lg p-4 space-y-4">
+        <div>
+          <p class="font-mono mb-2">1. Clone the repository:</p>
+          <div class="flex justify-between items-center bg-gray-800 p-2 rounded">
+            <Code
+              code="git clone https://github.com/aqz-saito/astro-components.git"
+              lang="bash"
+              theme="dark-plus"
+            />
+            <button class="text-gray-400 hover:text-white transition-colors">
+              <span class="material-icons">content_copy</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <p class="font-mono mb-2">2. Copy the component to your project:</p>
+          <div class="bg-gray-800 p-2 rounded font-mono text-sm">
+            <p>components/</p>
+            <p class="ml-4">└── Conversation.astro</p>
+          </div>
+        </div>
+
+        <div>
+          <p class="font-mono mb-2">3. Import and use:</p>
+          <div class="bg-gray-800 p-2 rounded">
+            <Code
+              code="import Conversation from '@/components/Conversation.astro';"
+              lang="typescript"
+              theme="dark-plus"
+            />
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+          <span class="material-icons text-sm">code</span>
+          <a
+            href="https://github.com/aqz-saito/astro-components/blob/main/components/Conversation.astro"
+            class="hover:underline"
+          >
+            View source on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Examples Section -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6">Examples</h2>
+
+      <!-- Basic Usage -->
+      <div class="mb-8 bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <div class="border-b border-gray-200 dark:border-gray-700 p-4">
+          <h3 class="text-xl font-semibold">Basic Usage</h3>
+        </div>
+        <div class="p-4 bg-gray-50 dark:bg-gray-900">
+          <Code code={examples[0].code} lang="astro" theme="dark-plus" />
+        </div>
+        <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="prose dark:prose-invert max-w-none">
+            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4">PREVIEW</h4>
+            <Conversation> This is a basic conversation bubble. </Conversation>
+          </div>
+        </div>
+      </div>
+
+      <!-- Color Variants -->
+      <div class="mb-8 bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <div class="border-b border-gray-200 dark:border-gray-700 p-4">
+          <h3 class="text-xl font-semibold">Color Variants</h3>
+        </div>
+        <div class="p-4 bg-gray-50 dark:bg-gray-900">
+          <Code code={examples[1].code} lang="astro" theme="dark-plus" />
+        </div>
+        <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="prose dark:prose-invert max-w-none">
+            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4">PREVIEW</h4>
+            <Conversation variant="blue">Blue theme</Conversation>
+            <Conversation variant="green">Green theme</Conversation>
+            <Conversation variant="purple">Purple theme</Conversation>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use Cases Section -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6">Use Cases</h2>
+
+      <!-- Chat Messages -->
+      <div class="mb-8 bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <div class="border-b border-gray-200 dark:border-gray-700 p-4">
+          <h3 class="text-xl font-semibold">Chat Messages</h3>
+        </div>
+        <div class="p-4 bg-gray-50 dark:bg-gray-900">
+          <Code code={useCases[0].code} lang="astro" theme="dark-plus" />
+        </div>
+        <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="prose dark:prose-invert max-w-none">
+            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4">PREVIEW</h4>
+            <Conversation variant="blue"> Hey there! How can I help you today? </Conversation>
+            <Conversation variant="purple">
+              I'd like to learn more about your services.
+            </Conversation>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tips & Notifications -->
+      <div class="mb-8 bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <div class="border-b border-gray-200 dark:border-gray-700 p-4">
+          <h3 class="text-xl font-semibold">Tips & Notifications</h3>
+        </div>
+        <div class="p-4 bg-gray-50 dark:bg-gray-900">
+          <Code code={useCases[1].code} lang="astro" theme="dark-plus" />
+        </div>
+        <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="prose dark:prose-invert max-w-none">
+            <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4">PREVIEW</h4>
+            <Conversation variant="green">
+              Pro Tip: You can use keyboard shortcuts to navigate faster!
+            </Conversation>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other sections remain unchanged -->
+  </div>
+</Layout>

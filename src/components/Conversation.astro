@@ -1,0 +1,32 @@
+---
+// Conversation.astro
+interface Props {
+	variant?: 'blue' | 'green' | 'purple'
+}
+
+const { variant = 'blue' } = Astro.props
+---
+
+<div class={`ext-conversation my-4 p-4 rounded-lg ${variant}`}>
+	<div class='w-full max-w-none'>
+		<slot />
+	</div>
+</div>
+
+<style>
+	.ext-conversation {
+		@apply text-gray-800 dark:text-gray-200;
+	}
+
+	.ext-conversation.blue {
+		@apply bg-blue-100 dark:bg-blue-900;
+	}
+
+	.ext-conversation.green {
+		@apply bg-green-100 dark:bg-green-900;
+	}
+
+	.ext-conversation.purple {
+		@apply bg-purple-100 dark:bg-purple-900;
+	}
+</style>

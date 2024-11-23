@@ -1,0 +1,291 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import type { ContentItem, Component, Demo } from "@/types";
+import WaveDivider from "@/components/WaveDivider.astro";
+import Trans from "@/components/Trans.astro";
+
+const items: ContentItem[] = [
+  {
+    type: "component",
+    title: "Conversation UI",
+    titleJa: "会話UI",
+    description:
+      "A simple chat bubble component with multiple color variants and dark mode support. Perfect for displaying dialogues, tips, and notifications.",
+    descriptionJa:
+      "複数のカラーバリエーションとダークモードに対応したシンプルな吹き出しコンポーネント。会話、ヒント、通知の表示に最適。",
+    href: "/components/explain-conversation",
+    tags: ["UI", "Dark Mode", "Tailwind CSS"],
+    icon: "chat_bubble",
+  },
+  {
+    type: "component",
+    title: "PlantUML Renderer",
+    titleJa: "PlantUMLレンダラー",
+    description:
+      "A simple component to render PlantUML diagrams in Astro using the official PlantUML server. Just write your diagram text and get SVG output.",
+    descriptionJa:
+      "公式PlantUMLサーバーを使用してダイアグラムを表示するシンプルなコンポーネント。テキストを書くだけでSVG出力が得られます。",
+    href: "/components/explain-plantuml",
+    tags: ["Diagram", "PlantUML", "SVG"],
+    icon: "account_tree",
+  },
+  {
+    type: "demo",
+    title: "Cloudflare Integration (Coming Soon)",
+    titleJa: "Cloudflare 連携（準備中）",
+    description: "Integration patterns with Cloudflare Pages and Workers (Under Development)",
+    descriptionJa: "Cloudflare PagesとWorkersの連携パターン（開発中）",
+    href: "#",
+    tags: ["Cloudflare", "Edge Computing"],
+    icon: "cloud",
+  },
+];
+const components = items.filter((item): item is Component => item.type === "component");
+const demos = items.filter((item): item is Demo => item.type === "demo");
+---
+
+<Layout title="Astro Components & Demos - aqz.jp">
+  <!-- Hero Section with Background Image -->
+  <div class="relative min-h-[400px] flex items-center">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="src/assets/images/aqz-astro-index-hero.jpg"
+        alt="Hero background"
+        class="w-full h-full object-cover"
+      />
+      <!-- Gradient Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 to-blue-800/90"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 py-12">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm mb-4"
+      >
+        <span class="material-icons text-xs">code</span>
+        <Trans
+          en="Open Source Components & Demos"
+          ja="オープンソースのコンポーネントとデモ"
+          enClass="text-white"
+          jaClass="text-white/80 text-sm"
+        />
+      </div>
+      <h1 class="text-5xl font-bold text-white mb-4">
+        <Trans en="Astro Components" ja="Astroコンポーネント" mode="dark" />
+      </h1>
+      <p class="text-xl text-blue-100 max-w-2xl mb-6">
+        <Trans
+          en="Practical components and cloud integration demos for Astro."
+          ja="実用的なコンポーネントとクラウド連携のデモを提供します。"
+          mode="dark"
+        />
+      </p>
+      <div class="flex
+          gap-4">
+        <a
+          href="/components"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+        >
+          <span class="material-icons">widgets</span>
+          <Trans en="View Components" ja="コンポーネントを見る" mode="light" />
+        </a>
+        <a
+          href="https://github.com/aqz-saito"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-blue-950 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          <span class="material-icons">code</span>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave Divider -->
+  <WaveDivider height="h-16" blur="8" />
+
+  <!-- Components Section -->
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
+      <span class="material-icons text-blue-600">widgets</span>
+      <Trans en="Components" ja="コンポーネント" />
+    </h2>
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      <Trans
+        en="Reusable components for your Astro projects."
+        ja="Astroプロジェクトで再利用可能なコンポーネント群です。"
+      />
+    </p>
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        components.map((component) => (
+          <a
+            href={component.href}
+            class="group block bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="material-icons text-blue-600 dark:text-blue-400 text-2xl">
+                  {component.icon}
+                </span>
+                <div>
+                  <h3 class="text-xl font-semibold group-hover:text-blue-600 transition-colors">
+                    <Trans en={component.title} ja={component.titleJa} />
+                  </h3>
+                </div>
+              </div>
+              <div class="space-y-2 mb-4">
+                <Trans en={component.description} ja={component.descriptionJa} />
+              </div>
+              <div class="flex gap-2">
+                {component.tags.map((tag) => (
+                  <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Wave Divider -->
+  <WaveDivider height="h-16" blur="8" />
+
+  <!-- Demos Section -->
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
+      <span class="material-icons text-blue-600">computer</span>
+      <Trans en="Demos" ja="デモ" />
+    </h2>
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      <Trans
+        en="Cloud integration demos with Cloudflare Pages/Workers."
+        ja="Cloudflare Pages/Workersとの連携デモです。"
+      />
+    </p>
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        demos.map((demo) => (
+          <a
+            href={demo.href}
+            class="group block bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="material-icons text-blue-600 dark:text-blue-400 text-2xl">
+                  {demo.icon}
+                </span>
+                <div>
+                  <h3 class="text-xl font-semibold group-hover:text-blue-600 transition-colors">
+                    <Trans en={demo.title} ja={demo.titleJa} />
+                  </h3>
+                </div>
+              </div>
+              <div class="space-y-2 mb-4">
+                <Trans en={demo.description} ja={demo.descriptionJa} />
+              </div>
+              <div class="flex gap-2">
+                {demo.tags.map((tag) => (
+                  <span class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- GitHub Stats Section -->
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl text-white p-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
+            <span class="material-icons">code</span>
+            <Trans en="Open Source" ja="オープンソース" mode="dark" />
+          </h2>
+          <p class="text-blue-100 mb-6">
+            <Trans
+              en="All components and demos are available on GitHub."
+              ja="すべてのコンポーネントとデモはGitHubで公開されています。"
+              mode="dark"
+            />
+          </p>
+          <a
+            href="https://github.com/aqz-saito"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+          >
+            <span class="material-icons">star</span>
+            <Trans en="Star on GitHub" ja="GitHubでスター" mode="light" />
+          </a>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-blue-700/50 rounded-lg p-4">
+            <div class="text-3xl font-bold mb-2">{components.length}</div>
+            <div class="text-blue-200">
+              <Trans en="Components" ja="コンポーネント" mode="dark" />
+            </div>
+          </div>
+          <div class="bg-blue-700/50 rounded-lg p-4">
+            <div class="text-3xl font-bold mb-2">{demos.length}</div>
+            <div class="text-blue-200">
+              <Trans en="Demos" ja="デモ" mode="dark" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature Grid -->
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
+      <span class="material-icons text-blue-600">star</span>
+      <Trans en="Features" ja="特徴" />
+    </h2>
+    <div class="grid md:grid-cols-3 gap-6 mt-8">
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-lg">
+        <span class="material-icons text-3xl text-blue-600 mb-4">speed</span>
+        <h3 class="text-xl font-semibold mb-2">
+          <Trans en="High Performance" ja="高パフォーマンス" />
+        </h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          <Trans
+            en="Built with Astro's zero-JS-by-default approach"
+            ja="AstroのゼロJS by defaultアプローチで構築"
+          />
+        </p>
+      </div>
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-lg">
+        <span class="material-icons text-3xl text-blue-600 mb-4">cloud</span>
+        <h3 class="text-xl font-semibold mb-2">
+          <Trans en="Edge Deployment" ja="エッジデプロイメント" />
+        </h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          <Trans
+            en="Optimized for Cloudflare Pages deployment"
+            ja="Cloudflare Pagesでの展開に最適化"
+          />
+        </p>
+      </div>
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-lg">
+        <span class="material-icons text-3xl text-blue-600 mb-4">code</span>
+        <h3 class="text-xl font-semibold mb-2">
+          <Trans en="TypeScript Ready" ja="TypeScript対応" />
+        </h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          <Trans en="Full TypeScript support out of the box" ja="TypeScriptを完全サポート" />
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave Divider -->
+  <WaveDivider height="h-16" blur="8" />
+</Layout>
