@@ -1,0 +1,146 @@
+---
+/**
+ * Mermaid chart component with dark mode support
+ *
+ * Required modules:
+ * - mermaid
+ * - rehype-mermaid (for rendering)
+ * - playwright (for server-side rendering)
+ *
+ * Installation with npm:
+ * ```bash
+ * npm install mermaid rehype-mermaid
+ * npm install --save-dev playwright
+ * npx playwright install --with-deps
+ * ```
+ *
+ * Installation with pnpm:
+ * ```bash
+ * pnpm install mermaid rehype-mermaid
+ * pnpm install -D playwright
+ * pnpm exec playwright install --with-deps
+ * ```
+ *
+ * Tailwind configuration:
+ * ```js
+ * // tailwind.config.mjs
+ * export default {
+ *   darkMode: 'class',
+ *   // ...
+ * }
+ * ```
+ *
+ * @example
+ * ```astro
+ * ---
+ * import MermaidChart from '../components/MermaidChart.astro';
+ *
+ * const chart = `
+ * graph TD
+ *     A[Start] --> B{Condition}
+ *     B -->|Yes| C[Process 1]
+ *     B -->|No| D[Process 2]
+ * `;
+ * ---
+ *
+ * <MermaidChart chart={chart} />
+ * ```
+ */
+
+export interface Props {
+  /** Mermaid diagram definition */
+  chart: string;
+}
+
+const { chart } = Astro.props;
+---
+
+<div class="mermaid" data-chart={chart}>
+  {chart}
+</div>
+
+<script>
+  import mermaid from "mermaid";
+
+  /**
+   * Available themes in Mermaid
+   * - base: Simple and basic theme
+   * - forest: Green-based theme
+   * - dark: Theme for dark mode
+   * - default: Default theme
+   * - neutral: Theme based on achromatic colors
+   */
+  const MERMAID_THEMES = {
+    DARK: "dark", // For dark mode
+    LIGHT: "forest", // For light mode
+    // Other available themes:
+    // - 'base'
+    // - 'default'
+    // - 'neutral'
+  } as const;
+
+  /**
+   * Function to initialize and re-render Mermaid
+   * Called when theme changes or dark mode is toggled
+   */
+  const initMermaid = () => {
+    const isDarkMode = document.documentElement.classList.contains("dark");
+    console.log("Initializing Mermaid with dark mode:", isDarkMode);
+
+    try {
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "loose",
+        theme: isDarkMode ? MERMAID_THEMES.DARK : MERMAID_THEMES.LIGHT,
+      });
+
+      document.querySelectorAll(".mermaid").forEach(async (element) => {
+        try {
+          const mermaidElement = element as HTMLElement;
+          const chartData = mermaidElement.getAttribute("data-chart");
+          if (!chartData) return;
+
+          mermaidElement.innerHTML = chartData;
+          mermaidElement.removeAttribute("data-processed");
+
+          await mermaid.init(undefined, mermaidElement);
+        } catch (err) {
+          console.error("Mermaid rendering error:", err);
+        }
+      });
+    } catch (error) {
+      console.error("Mermaid initialization error:", error);
+    }
+  };
+
+  /**
+   * Observe DOM changes and reinitialize Mermaid when class changes
+   */
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === "class") {
+        console.log("Class mutation detected:", {
+          oldValue: mutation.oldValue,
+          newValue: document.documentElement.className,
+        });
+        setTimeout(initMermaid, 0);
+      }
+    });
+  });
+
+  // Initialize
+  initMermaid();
+
+  // Observe class changes on html element
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+</script>
+
+<style>
+  .mermaid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

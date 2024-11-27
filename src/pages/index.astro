@@ -19,6 +19,18 @@ const items: ContentItem[] = [
   },
   {
     type: "component",
+    title: "Mermaid Chart",
+    titleJa: "Mermaidチャート",
+    description:
+      "A dark mode compatible component for rendering Mermaid diagrams in Astro. Seamlessly displays flowcharts, sequence diagrams, and more.",
+    descriptionJa:
+      "ダークモードに対応したMermaid図表示用コンポーネント。フローチャート、シーケンス図などを美しく表示します。",
+    href: "/components/explain-mermaid",
+    tags: ["Diagram", "Dark Mode", "Mermaid"],
+    icon: "schema",
+  },
+  {
+    type: "component",
     title: "PlantUML Renderer",
     titleJa: "PlantUMLレンダラー",
     description:
@@ -40,6 +52,7 @@ const items: ContentItem[] = [
     icon: "cloud",
   },
 ];
+
 const components = items.filter((item): item is Component => item.type === "component");
 const demos = items.filter((item): item is Demo => item.type === "demo");
 ---
