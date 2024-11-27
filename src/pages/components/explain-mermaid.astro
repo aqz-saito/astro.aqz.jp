@@ -1,0 +1,216 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import MermaidChart from "@/components/MermaidChart.astro";
+import { Code } from "astro-expressive-code/components";
+
+const flowchartExample = `
+graph TD
+    A[Start] --> B{Is it working?}
+    B -->|Yes| C[Great!]
+    B -->|No| D[Debug]
+    D --> B
+`;
+
+const sequenceExample = `
+sequenceDiagram
+    participant Browser
+    participant Server
+    participant Database
+
+    Browser->>Server: GET /api/data
+    Server->>Database: Query data
+    Database-->>Server: Return results
+    Server-->>Browser: Send JSON response
+`;
+
+const usageCode = `---
+import MermaidChart from "../components/MermaidChart.astro";
+---
+
+<MermaidChart
+  chart="
+graph TD
+    A[Start] --> B[End]
+  "
+/>`;
+---
+
+<Layout
+  title="Mermaid Chart Component - Astro Components"
+  description="Simple Mermaid diagram renderer for Astro with dark mode support / Astroで使用できるダークモード対応のMermaid図表示コンポーネント"
+>
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <div class="prose dark:prose-invert max-w-none">
+      <div class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Installation / インストール</h2>
+        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 space-y-4">
+          <div>
+            <p class="font-mono mb-2 text-gray-900 dark:text-gray-100">
+              1. Install required packages (npm):
+            </p>
+            <div class="bg-white dark:bg-gray-900 p-2 rounded">
+              <Code code="npm install mermaid rehype-mermaid" lang="bash" />
+              <Code code="npm install --save-dev playwright" lang="bash" />
+              <Code code="npx playwright install --with-deps" lang="bash" />
+            </div>
+          </div>
+
+          <div>
+            <p class="font-mono mb-2 text-gray-900 dark:text-gray-100">Or with pnpm:</p>
+            <div class="bg-white dark:bg-gray-900 p-2 rounded">
+              <Code code="pnpm install mermaid rehype-mermaid" lang="bash" />
+              <Code code="pnpm install -D playwright" lang="bash" />
+              <Code code="pnpm exec playwright install --with-deps" lang="bash" />
+            </div>
+          </div>
+
+          <div>
+            <p class="font-mono mb-2 text-gray-900 dark:text-gray-100">
+              2. Copy the component to your project:
+            </p>
+            <div class="bg-white dark:bg-gray-900 p-2 rounded">
+              <code>
+                components/<br />
+                └── MermaidChart.astro
+              </code>
+            </div>
+          </div>
+
+          <div>
+            <p class="font-mono mb-2 text-gray-900 dark:text-gray-100">3. Configure Tailwind:</p>
+            <div class="bg-white dark:bg-gray-900 p-2 rounded">
+              <Code
+                code={`// tailwind.config.mjs
+export default {
+  darkMode: 'class',
+  // ...
+}`}
+                lang="javascript"
+              />
+            </div>
+          </div>
+
+          <div>
+            <p class="font-mono mb-2 text-gray-900 dark:text-gray-100">4. Import and use:</p>
+            <div class="bg-white dark:bg-gray-900 p-2 rounded">
+              <Code
+                code="import MermaidChart from '@/components/MermaidChart.astro';"
+                lang="typescript"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span class="material-icons text-sm text-blue-400 dark:text-blue-300">code</span>
+            <a
+              href="https://github.com/[your-repo]/components/MermaidChart.astro"
+              class="text-blue-400 dark:text-blue-300 hover:underline"
+            >
+              View source on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="flex items-center gap-2 text-2xl font-semibold mb-4">
+        <span class="material-icons">code</span>
+        Usage / 使い方
+      </h2>
+      <div class="bg-white dark:bg-gray-900 p-4 rounded-lg overflow-x-auto">
+        <Code code={usageCode} lang="astro" />
+      </div>
+
+      <h2 class="flex items-center gap-2 text-2xl font-semibold mb-4">
+        <span class="material-icons">preview</span>
+        Examples / 使用例
+      </h2>
+
+      <h3>Flowchart / フローチャート</h3>
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg mb-8">
+        <MermaidChart chart={flowchartExample} />
+      </div>
+
+      <h3>Sequence Diagram / シーケンス図</h3>
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg mb-8">
+        <MermaidChart chart={sequenceExample} />
+      </div>
+
+      <h2 class="flex items-center gap-2 mt-12">
+        <span class="material-icons">settings</span>
+        Props / プロパティ
+      </h2>
+      <table class="mt-8 w-full border border-gray-200">
+        <thead>
+          <tr>
+            <th
+              class="border border-gray-700 dark:border-gray-200 p-2 text-left bg-gray-100 dark:bg-gray-800"
+              >Name</th
+            >
+            <th
+              class="border border-gray-700 dark:border-gray-200 p-2 text-left bg-gray-100 dark:bg-gray-800"
+              >Type</th
+            >
+            <th
+              class="border border-gray-700 dark:border-gray-200 p-2 text-left bg-gray-100 dark:bg-gray-800"
+              >Default</th
+            >
+            <th
+              class="border border-gray-700 dark:border-gray-200 p-2 text-left bg-gray-100 dark:bg-gray-800"
+              >Description</th
+            >
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border border-gray-700 dark:border-gray-200 p-2">chart</td>
+            <td class="border border-gray-700 dark:border-gray-200 p-2"><code>string</code></td>
+            <td class="border border-gray-700 dark:border-gray-200 p-2">Required</td>
+            <td class="border border-gray-700 dark:border-gray-200 p-2"
+              >Mermaid diagram definition<br />Mermaid図の定義テキスト</td
+            >
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 class="flex items-center gap-2 mt-12">
+        <span class="material-icons">info</span>
+        Features / 特徴
+      </h2>
+      <ul>
+        <li>
+          Dark mode support with automatic theme switching<br />
+          ダークモードに対応し、テーマが自動的に切り替わります
+        </li>
+        <li>
+          Client-side rendering with smooth transitions<br />
+          クライアントサイドでのレンダリングでスムーズな遷移を実現
+        </li>
+        <li>
+          Multiple diagram types support (flowcharts, sequence diagrams, etc.)<br />
+          複数の図表タイプをサポート（フローチャート、シーケンス図など）
+        </li>
+        <li>
+          Simple API with TypeScript support<br />
+          TypeScriptサポート付きのシンプルなAPI
+        </li>
+      </ul>
+
+      <h2 class="flex items-center gap-2 mt-12">
+        <span class="material-icons">palette</span>
+        Available Themes / 利用可能なテーマ
+      </h2>
+      <ul>
+        <li>Light mode: forest theme</li>
+        <li>Dark mode: dark theme</li>
+        <li>
+          Other available themes (can be configured in MermaidChart.astro):
+          <ul>
+            <li>base - Simple and basic theme</li>
+            <li>default - Default Mermaid theme</li>
+            <li>neutral - Theme based on achromatic colors</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</Layout>

@@ -14,11 +14,14 @@
     "@types/plantuml-encoder": "^1.4.2",
     "astro": "^4.16.13",
     "astro-expressive-code": "^0.38.3",
-    "plantuml-encoder": "^1.4.0"
+    "mermaid": "^11.4.0",
+    "plantuml-encoder": "^1.4.0",
+    "rehype-mermaid": "^3.0.0"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^5.1.2",
     "@types/node": "^22.9.1",
+    "playwright": "^1.49.0",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "tailwindcss": "^3.4.15",
