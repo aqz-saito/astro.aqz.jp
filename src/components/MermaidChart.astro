@@ -23,123 +23,123 @@
  *
  * @props {string} chart - The Mermaid diagram definition string
  */
-const { chart } = Astro.props
-const chartId = `mermaid-${Math.random().toString(36).substring(2, 9)}`
+const { chart } = Astro.props;
+const chartId = `mermaid-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
-<div class='mermaid-container'>
-	<div class='mermaid' id={chartId} data-chart={chart}>
-		{chart}
-	</div>
+<div class="mermaid-container">
+  <div class="mermaid" id={chartId} data-chart={chart}>
+    {chart}
+  </div>
 </div>
 
 <style is:global>
-	.mermaid-container {
-		position: relative;
-		width: 100%;
-		margin: 1rem 0;
-	}
+  .mermaid-container {
+    position: relative;
+    width: 100%;
+    margin: 1rem 0;
+  }
 
-	.mermaid-container .mermaid {
-		position: relative;
-		width: 100%;
-		text-align: center;
-	}
+  .mermaid-container .mermaid {
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
 
-	.mermaid-container .mermaid svg {
-		max-width: 100%;
-		height: auto;
-	}
+  .mermaid-container .mermaid svg {
+    max-width: 100%;
+    height: auto;
+  }
 </style>
 
 <script>
-	import mermaid from 'mermaid'
+  import mermaid from "mermaid";
 
-	/**
-	 * Available themes for Mermaid diagrams
-	 * - base: Simple and basic theme
-	 * - forest: Green-based theme
-	 * - dark: Dark mode theme
-	 * - default: Default theme
-	 * - neutral: Achromatic theme
-	 */
-	const MERMAID_THEMES = {
-		DARK: 'dark', // For dark mode
-		LIGHT: 'forest' // For light mode
-		// Other available themes:
-		// - 'base'
-		// - 'default'
-		// - 'neutral'
-	} as const
+  /**
+   * Available themes for Mermaid diagrams
+   * - base: Simple and basic theme
+   * - forest: Green-based theme
+   * - dark: Dark mode theme
+   * - default: Default theme
+   * - neutral: Achromatic theme
+   */
+  const MERMAID_THEMES = {
+    DARK: "dark", // For dark mode
+    LIGHT: "forest", // For light mode
+    // Other available themes:
+    // - 'base'
+    // - 'default'
+    // - 'neutral'
+  } as const;
 
-	/**
-	 * Initializes and re-renders Mermaid diagrams
-	 * This function is called during theme changes and dark mode toggles
-	 *
-	 * @async
-	 * @function initMermaid
-	 * @returns {Promise<void>}
-	 */
-	const initMermaid = async (): Promise<void> => {
-		const isDarkMode = document.documentElement.classList.contains('dark')
-		console.log('Initializing Mermaid with dark mode:', isDarkMode)
+  /**
+   * Initializes and re-renders Mermaid diagrams
+   * This function is called during theme changes and dark mode toggles
+   *
+   * @async
+   * @function initMermaid
+   * @returns {Promise<void>}
+   */
+  const initMermaid = async (): Promise<void> => {
+    const isDarkMode = document.documentElement.classList.contains("dark");
+    console.log("Initializing Mermaid with dark mode:", isDarkMode);
 
-		try {
-			mermaid.initialize({
-				startOnLoad: true,
-				securityLevel: 'loose',
-				theme: isDarkMode ? MERMAID_THEMES.DARK : MERMAID_THEMES.LIGHT
-			})
+    try {
+      mermaid.initialize({
+        startOnLoad: true,
+        securityLevel: "loose",
+        theme: isDarkMode ? MERMAID_THEMES.DARK : MERMAID_THEMES.LIGHT,
+      });
 
-			// Convert NodeListOf<Element> to Array for proper iteration
-			const elements: Element[] = Array.from(document.querySelectorAll('.mermaid'))
+      // Convert NodeListOf<Element> to Array for proper iteration
+      const elements: Element[] = Array.from(document.querySelectorAll(".mermaid"));
 
-			for (const element of elements) {
-				try {
-					const mermaidElement = element as HTMLElement
-					const chartData = mermaidElement.getAttribute('data-chart')
-					if (!chartData) continue
+      for (const element of elements) {
+        try {
+          const mermaidElement = element as HTMLElement;
+          const chartData = mermaidElement.getAttribute("data-chart");
+          if (!chartData) continue;
 
-					// Clear existing content
-					mermaidElement.innerHTML = chartData
-					mermaidElement.removeAttribute('data-processed')
+          // Clear existing content
+          mermaidElement.innerHTML = chartData;
+          mermaidElement.removeAttribute("data-processed");
 
-					// Re-render using mermaid.init
-					await mermaid.init(undefined, mermaidElement)
-				} catch (err) {
-					console.error('Mermaid rendering error:', err)
-				}
-			}
-		} catch (error) {
-			console.error('Mermaid initialization error:', error)
-		}
-	}
+          // Re-render using mermaid.init
+          await mermaid.init(undefined, mermaidElement);
+        } catch (err) {
+          console.error("Mermaid rendering error:", err);
+        }
+      }
+    } catch (error) {
+      console.error("Mermaid initialization error:", error);
+    }
+  };
 
-	// Initialize on DOMContentLoaded
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initMermaid)
-	} else {
-		initMermaid()
-	}
+  // Initialize on DOMContentLoaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMermaid);
+  } else {
+    initMermaid();
+  }
 
-	/**
-	 * Observes DOM changes and reinitializes Mermaid when class changes occur
-	 * Particularly useful for theme switching
-	 */
-	const observer = new MutationObserver((mutations) => {
-		mutations.forEach((mutation) => {
-			if (mutation.attributeName === 'class') {
-				console.log('Class mutation detected:', {
-					oldValue: mutation.oldValue,
-					newValue: document.documentElement.className
-				})
-				setTimeout(initMermaid, 0)
-			}
-		})
-	})
+  /**
+   * Observes DOM changes and reinitializes Mermaid when class changes occur
+   * Particularly useful for theme switching
+   */
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === "class") {
+        console.log("Class mutation detected:", {
+          oldValue: mutation.oldValue,
+          newValue: document.documentElement.className,
+        });
+        setTimeout(initMermaid, 0);
+      }
+    });
+  });
 
-	observer.observe(document.documentElement, {
-		attributes: true,
-		attributeFilter: ['class']
-	})
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 </script>
