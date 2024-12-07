@@ -105,7 +105,10 @@ const chartId = `mermaid-${Math.random().toString(36).substring(2, 9)}`;
           mermaidElement.removeAttribute("data-processed");
 
           // Re-render using mermaid.init
-          await mermaid.init(undefined, mermaidElement);
+          // await mermaid.init(undefined, mermaidElement)
+          await mermaid.run({
+            nodes: [mermaidElement],
+          });
         } catch (err) {
           console.error("Mermaid rendering error:", err);
         }
